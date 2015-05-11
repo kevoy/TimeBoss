@@ -67,7 +67,7 @@ function login($email, $password, $landing_page = "index.php"){
 
 //check if the session variable $_SESSION['user_id'] is set, if it is set return true if not return false
 function isLoggedIn(){
-
+return true;
 }
 
 //ignore for now, this should automatically redirect the user to the login page if he/she tries to access a page that requires login but the user is not logged in

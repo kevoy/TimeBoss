@@ -130,3 +130,25 @@
 	margin-top: 40px;
 	font-size: 25px;
 }
+#c_main_container{
+	min-height: 700px;
+	padding: 20px 20px 20px 20px;
+}
+#form-box{
+	width: 500px;
+	padding: 0px 10px 0px 10px;
+	margin: 0px auto;
+	text-align: center;
+
+}
+#form-box h2{
+	height: 50px;
+	border-bottom:2px solid #CFD0D0;
+	font-family: "Audiowide", "Helvetica Neue",Helvetica,Arial,sans-serif;
+	text-align: center;
+	line-height: 50px;
+}
+#form-box .form-group{
+	margin: 20px 0px 20px 0px;
+	text-align: left;
+}
