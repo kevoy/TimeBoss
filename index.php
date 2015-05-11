@@ -9,17 +9,7 @@
 
 </head>
 <body>
-	<div id="top-nav" class="row margin-0 ">
-		<div id='top-nav-title-holder' class="col-md-6">
-			<h1>Time <span class="c_blue">Boss</span></h1>
-		</div>
-		<div id='top-nav-links-holder' class="col-md-6">
-			<a class="c_selected"><span class="margin-10 glyphicon glyphicon-home"></span>HOME</a>
-			<a><span class="margin-10 glyphicon glyphicon-download-alt"></span>DOWNLOAD</a>
-			<a><span class="margin-10 glyphicon glyphicon-user"></span>SIGN UP</a>
-			<a><span class="margin-10 glyphicon glyphicon-log-in"></span>LOGIN</a>
-		</div>
-	</div>
+	<?php include 'header-template.php' ?>
 
 	<div id="main-welcome" class="row margin-0">
 		<div id="welcome-text">
