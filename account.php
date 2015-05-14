@@ -150,6 +150,100 @@
 						</form>
 					</div>
 				</div>
+				<div id="overview-panel" class="col-md-12">
+					<h3 class="c_subtitle">My Calendar</h3>
+					<div>
+						<div id="cal-holder">
+							<div class="col-md-offset-1 col-md-11 pad-0" id="days-holder">
+								<div class="col-md-2 day-box">
+									<h4>Mon</h4>
+								</div>
+								<div class="col-md-2 day-box">
+									<h4>Tue</h4>
+								</div>
+								<div class="col-md-2 day-box">
+									<h4>Wed</h4>
+								</div>
+								<div class="col-md-2 day-box">
+									<h4>Thur</h4>
+								</div>
+								<div class="col-md-2 day-box">
+									<h4>Fri</h4>
+								</div>
+								
+							</div>
+							<div id="cal-holder-body" class="col-md-12 pad-0">
+								<div class="time-box col-md-1">
+									<h4>8 A.M</h4>
+								</div>
+								<div class="col-md-11 pad-0 tasks-cal">
+									<div class="task-box col-md-2 pad-0">
+										<h4>Task Name</h4>
+										<h4>Task Time </h4>
+										<h4>Task Location</h4>
+									</div>
+									<div class="task-box col-md-2 pad-0 c_1">
+										<h4><span class="glyphicon glyphicon-plus-sign"></span></h4>
+									</div>
+								</div>
+
+								<div class="time-box col-md-1">
+									<h4>8 A.M</h4>
+								</div>
+								<div class="col-md-11 pad-0 tasks-cal">
+									<div class="task-box col-md-2 pad-0">
+										<h4>Task Name</h4>
+										<h4>Task Time </h4>
+										<h4>Task Location</h4>
+									</div>
+									<div class="task-box col-md-2 pad-0 c_1">
+										<h4><span class="glyphicon glyphicon-plus-sign"></span></h4>
+									</div>
+									<div class="task-box col-md-2 pad-0 c_1">
+										<h4><span class="glyphicon glyphicon-plus-sign"></span></h4>
+									</div>
+									<div class="task-box col-md-2 pad-0 c_1">
+										<h4><span class="glyphicon glyphicon-plus-sign"></span></h4>
+									</div>
+									<div class="task-box col-md-2 pad-0">
+										<h4>Task Name</h4>
+										<h4>Task Time </h4>
+										<h4>Task Location</h4>
+									</div>
+								</div>
+
+								<div class="time-box col-md-1">
+									<h4>8 A.M</h4>
+								</div>
+								<div class="col-md-11 pad-0 tasks-cal">
+									<div class="task-box col-md-2 pad-0">
+										<h4>Task Name</h4>
+										<h4>Task Time </h4>
+										<h4>Task Location</h4>
+									</div>
+									<div class="task-box col-md-2 pad-0 c_1">
+										<h4><span class="glyphicon glyphicon-plus-sign"></span></h4>
+									</div>
+								</div>
+
+								<div class="time-box col-md-1">
+									<h4>8 A.M</h4>
+								</div>
+								<div class="col-md-11 pad-0 tasks-cal">
+									<div class="task-box col-md-2 pad-0">
+										<h4>Task Name</h4>
+										<h4>Task Time </h4>
+										<h4>Task Location</h4>
+									</div>
+									<div class="task-box col-md-2 pad-0 c_1">
+										<h4><span class="glyphicon glyphicon-plus-sign"></span></h4>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+				</div>
 			</div>
 		</div>
 

@@ -226,4 +226,71 @@
 	margin-bottom: 50px;
 	font-family: "Play", "Helvetica Neue",Helvetica,Arial,sans-serif;
 	border-bottom: 1px solid #6B6969;
+	padding-bottom: 20px;
+	font-size: 30px;
+}
+#new-task-panel{
+	display: none;
+}
+#days-holder{
+	height: 50px;
+}
+.day-box{
+	height: 100%;
+	text-align: center;
+	background-color: #5bc0de;
+	border-radius: 10px;
+	color:white;
+	margin: 0px 0px 0px 5px;
+}
+.day-box h4{
+	height: 100%;
+	margin:0px 0px 0px 0px;
+	font-size: 15px;
+	line-height: 50px;
+}
+#cal-holder{
+	height: 500px;
+	overflow-x:auto;
+}
+.time-box{
+	height: 100px;
+	text-align: center;
+	background-color: #5bc0de;
+	border-radius: 10px;
+	color:white;
+	margin: 5px 0px 0px 0px;
+	
+}
+.time-box h4{
+	height: 100%;
+	margin:0px 0px 0px 0px;
+	font-size: 15px;
+	line-height: 100px;
+}
+.task-box{
+	height: 100px;
+	text-align: left;
+	padding: 5px 2px 2px 5px;
+	background-color: #f0ad4e;
+	border-radius: 10px;
+	color:white;
+	margin: 5px 0px 0px 5px;
+
+}
+.task-box h4{
+	margin:0px 0px 0px 0px;
+	font-size: 12px;
+
+}
+.c_1{
+	background-color: #F2F2F2;
+	border: 1px solid #D0CFCF;
+	
+}
+.c_1 h4{
+	text-align: center;
+	color: #6B6969;
+	line-height: 100px;
+	font-size: 30px;
 }
