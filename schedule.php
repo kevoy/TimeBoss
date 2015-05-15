@@ -23,6 +23,9 @@ if(isset($_REQUEST['class'])){
 function getLastModified(){
 
 }
+function getScheduleId(){
+	
+}
 function getNumTasks(){
 
 }

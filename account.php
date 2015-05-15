@@ -7,6 +7,8 @@
 	<link rel="stylesheet" href="stylesheets/main.css" type="text/css" >
 	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine:bold,bolditalic|Inconsolata:italic|Droid+Sans|Audiowide|Play">
 	<script type="text/javascript" src="scripts/account.js"></script>
+	<script type="text/javascript" src="scripts/prototype.js"></script>
+
 </head>
 <body>
 	<?php include 'header-template.php' ?>
@@ -49,104 +51,104 @@
 					<div>
 						<form action="" class="form-horizontal">
 							<div class="form-group">
-								<label for="email-field" class="col-sm-2">Task Name</label>
+								<label for="t-name-field" class="col-sm-2">Task Name</label>
 								<div class="col-sm-7">
-									<input type="email" id="email-field" class="form-control" placeholder="Enter Your Email Address" >
+									<input type="text" id="t-name-field" class="form-control" placeholder="Enter Task Name" >
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="email-field" class="col-sm-2">Task Location</label>
+								<label for="t-location-field" class="col-sm-2">Task Location</label>
 								<div class="col-sm-7">
-									<input type="text" id="email-field" class="form-control" placeholder="Enter Location" >
+									<input type="text" id="t-location-field" class="form-control" placeholder="Enter Location" >
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="email-field" class="col-sm-2">Start Date</label>
+								<label for="t-s-date-field" class="col-sm-2">Start Date</label>
 								<div class="col-sm-7">
-									<input type="date" id="email-field" class="form-control" placeholder="Enter Your Email Address" >
+									<input type="date" id="t-s-date-field" class="form-control" placeholder="Enter Task Start Date eg: mm/dd/yyyy" >
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="email-field" class="col-sm-2">End Date</label>
+								<label for="t-e-date-field" class="col-sm-2">End Date</label>
 								<div class="col-sm-7">
-									<input type="date" id="email-field" class="form-control" placeholder="Enter Your Email Address" >
+									<input type="date" id="t-e-date-field" class="form-control" placeholder="Enter Task End Date eg: mm/dd/yyyy" >
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="email-field" class="col-sm-2">Does this task have a fixed time slot?</label>
+								<label class="col-sm-2">Does this task have a fixed time slot?</label>
 								<div class="col-sm-7">
 									<div class="radio">
 										<label>
-											<input type="radio" id="email-field" name="mandatory" placeholder="Enter Location">Yes
+											<input type="radio" id="mandatory-true-field" name="mandatory" placeholder="Enter Location">Yes
 										</label>
 										<label>
-											<input type="radio" id="email-field" name="mandatory" placeholder="Enter Location" checked>No
+											<input type="radio" id="mandatory-false-field" name="mandatory" placeholder="Enter Location" checked>No
 										</label>
 									</div>
 									
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="email-field" class="col-sm-2">Start Time</label>
+								<label for="s-time-field" class="col-sm-2">Start Time</label>
 								<div class="col-sm-7">
-									<input type="time" id="email-field" class="form-control" placeholder="Enter Location" >
+									<input type="time" id="s-time-field" class="form-control" placeholder="Enter Start Time eg: hh:mm" >
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="email-field" class="col-sm-2">End Time</label>
+								<label for="e-time-field" class="col-sm-2">End Time</label>
 								<div class="col-sm-7">
-									<input type="time" id="email-field" class="form-control" placeholder="Enter Location" >
+									<input type="time" id="e-time-field" class="form-control" placeholder="Enter End Time eg: hh:mm" >
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="email-field" class="col-sm-2">Priority</label>
+								<label class="col-sm-2">Priority</label>
 								<div class="col-sm-7">
 									<div class="radio">
 										<label>
-											<input type="radio" id="email-field" name="priority" placeholder="Enter Location">High
+											<input type="radio" id="p-h-field" name="priority" placeholder="Enter Location">High
 										</label>
 										<label>
-											<input type="radio" id="email-field" name="priority" placeholder="Enter Location" checked>Medium
+											<input type="radio" id="p-m-field" name="priority" placeholder="Enter Location" checked>Medium
 										</label>
 										<label>
-											<input type="radio" id="email-field" name="priority" placeholder="Enter Location">Low
+											<input type="radio" id="p-l-field" name="priority" placeholder="Enter Location">Low
 										</label>
 									</div>
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="email-field" class="col-sm-2">Is this a repetitive task?</label>
+								<label class="col-sm-2">Is this a repetitive task?</label>
 								<div class="col-sm-7">
 									<div class="radio">
 										<label>
-											<input type="radio" id="email-field" name="repetitive" placeholder="Enter Location">Yes
+											<input type="radio" id="repetitive-true-field" name="repetitive" placeholder="Enter Location">Yes
 										</label>
 										<label>
-											<input type="radio" id="email-field" name="repetitive" placeholder="Enter Location" checked>No
+											<input type="radio" id="repetitive-false-field" name="repetitive" placeholder="Enter Location" checked>No
 										</label>
 									</div>
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="email-field" class="col-sm-2">Description</label>
+								<label for="desc-field" class="col-sm-2">Description</label>
 								<div class="col-sm-7">
-									<input type="text" id="email-field" class="form-control" placeholder="Enter Location" >
+									<input type="text" id="desc-field" class="form-control" placeholder="Enter Description" >
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="email-field" class="col-sm-2">Access</label>
+								<label class="col-sm-2">Access</label>
 								<div class="col-sm-7">
 									<div class="radio">
 										<label>
-											<input type="radio" id="email-field" name="access" placeholder="Enter Location" checked>Private
+											<input type="radio" id="access-priv-field" name="access" placeholder="Enter Location" checked>Private
 										</label>
 										<label>
-											<input type="radio" id="email-field" name="access" placeholder="Enter Location" checked>Public
+											<input type="radio" id="access-pub-field" name="access" placeholder="Enter Location" checked>Public
 										</label>
 									</div>
 								</div>
 							</div>
-							<input type="submit" class="btn btn-primary btn-lg  col-sm-offset-2" value="Add Task">
+							<input type="button" class="btn btn-primary btn-lg  col-sm-offset-2" id= "add-task-btn" value="Add Task">
 						</form>
 					</div>
 				</div>
