@@ -1,5 +1,5 @@
 <?php
-require 'User.php';
+require_once('User.php');
 $current_url = $_SERVER['REQUEST_URI'];
 $current_page = "";
 if(strpos($current_url, "index.php") != false){

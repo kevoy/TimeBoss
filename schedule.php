@@ -1,11 +1,11 @@
 <?php
-require 'User.php'
+require_once('User.php');
 if(isset($_REQUEST['class'])){
-	//example url:http://localhost/TimeBoss/User.php?class=schedule&method=get_modified
+	//example url:http://localhost/TimeBoss/schedule.php?class=schedule&method=get_modified
 	if($_REQUEST['class']=="schedule"){
 		//follow the trend, create parameters for 'method' that should call on the functions you completed below and test each by visiting example url above replacing 'get_modified' with the appropiate method parameter
 		if($_REQUEST['method']=="get_modified"){
-			return getLastModified();
+			return getScheduleId();
 		}
 		else if($_REQUEST['method']=="num_tasks"){
 			return getNumTasks();
@@ -24,7 +24,10 @@ function getLastModified(){
 
 }
 function getScheduleId(){
-	
+	$user_id = getUserId();
+	$result = queryDB("SELECT schedule_id from creates where user_id = '$user_id'");
+	$row = mysql_fetch_array($result);
+	return $row['schedule_id'];
 }
 function getNumTasks(){
 

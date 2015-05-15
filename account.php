@@ -1,3 +1,7 @@
+<?php
+require_once('task.php');
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -296,14 +300,26 @@
 								</tr>
 							</thead>
 							<tbody>
+								<?php 
+								$task_ids = getMyTaskIds();
+								foreach($task_ids as $task):
+								?>
 								<tr>
-									<td>Education Technology</td>
-									<td>01/12/2015 - 02/01/2016</td>
-									<td> 9.a.m - 12.p.m</td>
-									<td>Faculty of education building 2</td>
-									<td>Medium</td>
-									<td><span class="glyphicon glyphicon-ok-circle"></span></td>
-									<td><span class="glyphicon glyphicon-ok-circle"></span></td>
+									<td><?php echo getTaskName($task); ?></td>
+									<td><?php echo getTaskStartDate($task); ?><br><?php echo getTaskEndDate($task); ?></td>
+									<td><?php echo getTaskStartTime($task); ?><br><?php echo getTaskEndTime($task); ?></td>
+									<td><?php echo getTaskLocation($task); ?></td>
+									<td><?php echo getTaskPriority($task); ?></td>
+									<?php if(isTaskMandatory($task)): ?>
+										<td><span class="glyphicon glyphicon-ok-circle"></span></td>
+									<?php else: ?>
+										<td><span class="glyphicon glyphicon-minus-sign"></span></td>
+									<?php endif; ?>
+									<?php if(isTaskRepetitive($task)): ?>
+										<td><span class="glyphicon glyphicon-ok-circle"></span></td>
+									<?php else: ?>
+										<td><span class="glyphicon glyphicon-minus-sign"></span></td>
+									<?php endif; ?>
 									<td>
 										<button type="button" class="btn btn-info">
 											<span class="glyphicon glyphicon-edit"></span>
@@ -316,48 +332,10 @@
 										</button>
 									</td>
 								</tr>
-								<tr>
-									<td>Education Technology</td>
-									<td>01/12/2015 - 02/01/2016</td>
-									<td> 9.a.m - 12.p.m</td>
-									<td>Faculty of education building 2</td>
-									<td>Medium</td>
-									<td><span class="glyphicon glyphicon-ok-circle"></span></td>
-									<td><span class="glyphicon glyphicon-ok-circle"></span></td>
-									<td>
-										<button type="button" class="btn btn-info">
-											<span class="glyphicon glyphicon-edit"></span>
-										</button> 
-										<button type="button" class="btn btn-warning">
-											<span class="glyphicon glyphicon-eye-open"></span>
-										</button>
-										<button type="button" class="btn btn-danger">
-											<span class="glyphicon glyphicon-remove-circle"></span>
-										</button>
-									</td>
-								</tr>
-								<tr>
-									<td>Education Technology</td>
-									<td>01/12/2015 - 02/01/2016</td>
-									<td> 9.a.m - 12.p.m</td>
-									<td>Faculty of education building 2</td>
-									<td>Medium</td>
-									<td><span class="glyphicon glyphicon-ok-circle"></span></td>
-									<td><span class="glyphicon glyphicon-ok-circle"></span></td>
-									<td>
-										<button type="button" class="btn btn-info">
-											<span class="glyphicon glyphicon-edit"></span>
-										</button> 
-										<button type="button" class="btn btn-warning">
-											<span class="glyphicon glyphicon-eye-open"></span>
-										</button>
-										<button type="button" class="btn btn-danger">
-											<span class="glyphicon glyphicon-remove-circle"></span>
-										</button>
-									</td>
-								</tr>
-
-
+								<?php
+								endforeach;
+								?>
+		
 							</tbody>
 						</table>
 					</div>

@@ -1,5 +1,5 @@
 <?php
-require 'DBConnector.php';
+require_once('DBConnector.php');
 session_start();
 // example url http://localhost/TimeBoss/User.php?class=user&method=get_user_id
 if(isset($_REQUEST['class'])){

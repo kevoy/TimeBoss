@@ -1,5 +1,5 @@
 <?php
-require 'DBConnector.php';
+require_once('schedule.php');
 if(isset($_REQUEST['class'])){
 	if($_REQUEST['class']=="task"){
 		if($_REQUEST['method']=="get_task_id"){
@@ -32,22 +32,77 @@ if(isset($_REQUEST['class'])){
 //get task ids
 // return id eg: [12a, 14w, 78h]
 function getMyTaskIds(){
-$results = queryDB("");
+	$user_id = getUserId();
+	$result = queryDB("select task_id from adds where user_id ='$user_id'");
+	$task_ids=array();
+	while ($row=mysql_fetch_array($result)) {
+		$task_ids[]= $row['task_id'];
+	}
+	return $task_ids;
 }
 
 function getTaskName($task_id){
-
+	$result = queryDB("select name from task where task_id = '$task_id'");
+	$row = mysql_fetch_array($result);
+	return $row['name'];
 }
 
-function getTaskDate($task_id){
-
+function getTaskStartDate($task_id){
+	$result = queryDB("select startDate from task where task_id = '$task_id'");
+	$row = mysql_fetch_array($result);
+	return $row['startDate'];
 }
+function getTaskEndDate($task_id){
+	$result = queryDB("select endDate from task where task_id = '$task_id'");
+	$row = mysql_fetch_array($result);
+	return $row['endDate'];
+}
+function getTaskStartTime($task_id){
+	$result = queryDB("select startTime from task where task_id = '$task_id'");
+	$row = mysql_fetch_array($result);
+	return $row['startTime'];
+}
+function getTaskEndTime($task_id){
+	$result = queryDB("select endTime from task where task_id = '$task_id'");
+	$row = mysql_fetch_array($result);
+	return $row['endTime'];
+}
+function getTaskLocation($task_id){
+	$result = queryDB("select location from task where task_id = '$task_id'");
+	$row = mysql_fetch_array($result);
+	return $row['location'];
+}
+function isTaskMandatory($task_id){
+	$result = queryDB("select mandatory from task where task_id = '$task_id'");
+	$row = mysql_fetch_array($result);
+	if( $row['mandatory']=="true"){
+		return true;
+	}else{
+		return false;
+	}
+}
+function getTaskPriority($task_id){
+	$result = queryDB("select priority from task where task_id = '$task_id'");
+	$row = mysql_fetch_array($result);
+	return $row['priority'];
+}
+function isTaskRepetitive($task_id){
+	$result = queryDB("select repetitive from task where task_id = '$task_id'");
+	$row = mysql_fetch_array($result);
+	if( $row['repetitive']=="true"){
+		return true;
+	}else{
+		return false;
+	}}
 //etc..
 function addNewTask($name, $location, $start, $end, $repeat, $mandatory,$sTime,$eTime, $priority, $description, $access){
 	$task_id = getRandNum();
 	$task_app_id = getRandNum();
+	$user_id = getUserId();
+	$schedule_id = getScheduleId();
 	$result = queryDB("INSERT INTO task VALUES ('$task_id', '$task_app_id', '$name', '$location', '$start', '$end', '$repeat', '$mandatory','$sTime','$eTime', '$priority', '$description', '$access');");
-	
+	$result2 = queryDB("INSERT INTO adds VALUES ('$user_id', '$task_id')");
+	$result3 = queryDB("INSERT INTO contains VALUES ('$schedule_id', '$task_id')");
 }
 function getRandNum(){
 	return rand(1, 10000);
