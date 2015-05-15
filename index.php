@@ -27,7 +27,7 @@
 		<div class="col-md-4 c_fill">
 			<span class="glyphicon glyphicon-comment lg-img"></span>
 			<h3>Organise Meetings</h3>
-			<h4>Our web interface alows you to incorporate meetings in you schedule. If all members of your meeting are members of Time Boss we can determine the best time for your meeting.</h4>
+			<h4>Our web interface alows you to incorporate meetings in your schedule. If all members of your meeting are members of Time Boss we can determine the best time for your meeting.</h4>
 		</div>
 		<div class="col-md-4 c_fill">
 			<span class="glyphicon glyphicon-music lg-img"></span>
@@ -42,7 +42,7 @@
 		<div class="col-md-6 c_fill">
 			<div id="download-desc">
 				<h1>Android App</h1>
-				<h3>The Time Boss andoid app allows you to perform all task scheduling from your android device. Get pop alerts and reminders about upcoming task, mark tasks as complete and many more.</h3>
+				<h3>The Time Boss andoid app allows you to perform all task scheduling from your android device. Get pop-up alerts and reminders about upcoming task, mark tasks as complete and many more.</h3>
 				<button type="button" id="c_download" class="btn btn-primary btn-lg">Download App</button>
 			</div>
 		</div>

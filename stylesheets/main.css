@@ -229,7 +229,7 @@
 	padding-bottom: 20px;
 	font-size: 30px;
 }
-#new-task-panel{
+#new-task-panel, #tasks-panel{
 	display: none;
 }
 #days-holder{
@@ -239,7 +239,7 @@
 	height: 100%;
 	text-align: center;
 	background-color: #5bc0de;
-	border-radius: 10px;
+	border-radius: 5px;
 	color:white;
 	margin: 0px 0px 0px 5px;
 }
@@ -252,12 +252,14 @@
 #cal-holder{
 	height: 500px;
 	overflow-x:auto;
+	
+
 }
 .time-box{
 	height: 100px;
 	text-align: center;
 	background-color: #5bc0de;
-	border-radius: 10px;
+	border-radius: 5px;
 	color:white;
 	margin: 5px 0px 0px 0px;
 	
@@ -273,7 +275,7 @@
 	text-align: left;
 	padding: 5px 2px 2px 5px;
 	background-color: #f0ad4e;
-	border-radius: 10px;
+	border-radius: 5px;
 	color:white;
 	margin: 5px 0px 0px 5px;
 
@@ -286,11 +288,18 @@
 .c_1{
 	background-color: #F2F2F2;
 	border: 1px solid #D0CFCF;
-	
+	cursor: pointer;
+	transition:all ease-in-out 0.4s;
+}
+.c_1:hover{
+	background-color: #D0CFCF;
 }
 .c_1 h4{
 	text-align: center;
 	color: #6B6969;
 	line-height: 100px;
 	font-size: 30px;
+}
+.c_table{
+	text-align: center;
 }

@@ -6,7 +6,7 @@
 	<script src="stylesheets/bootstrap/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="stylesheets/main.css" type="text/css" >
 	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine:bold,bolditalic|Inconsolata:italic|Droid+Sans|Audiowide|Play">
-
+	<script type="text/javascript" src="scripts/account.js"></script>
 </head>
 <body>
 	<?php include 'header-template.php' ?>
@@ -38,7 +38,7 @@
 					<h3 id="panel-title">HOME <span class="glyphicon glyphicon-hand-right margin-10-10"></span> <span id="panel-selected">OVERVIEW</span></h3>
 				</div>
 				<div class="col-md-6" id="pane-nav-buttons-holder">
-					<button type="button" class="btn btn-primary"><span class="margin-10 glyphicon glyphicon-ok-circle"></span>Add New Task</button>
+					<button type="button" class="btn btn-primary" id="new-task-btn"><span class="margin-10 glyphicon glyphicon-ok-circle"></span>Add New Task</button>
 					<button type="button" class="btn btn-info"><span class="margin-10 glyphicon glyphicon-ok-sign"></span>Add New Activity</button>
 					<button type="button" class="btn btn-warning"><span class="margin-10 glyphicon glyphicon-check"></span>Add New Meeting</button>
 				</div>
@@ -185,6 +185,15 @@
 									<div class="task-box col-md-2 pad-0 c_1">
 										<h4><span class="glyphicon glyphicon-plus-sign"></span></h4>
 									</div>
+									<div class="task-box col-md-2 pad-0 c_1">
+										<h4><span class="glyphicon glyphicon-plus-sign"></span></h4>
+									</div>
+									<div class="task-box col-md-2 pad-0 c_1">
+										<h4><span class="glyphicon glyphicon-plus-sign"></span></h4>
+									</div>
+									<div class="task-box col-md-2 pad-0 c_1">
+										<h4><span class="glyphicon glyphicon-plus-sign"></span></h4>
+									</div>
 								</div>
 
 								<div class="time-box col-md-1">
@@ -224,6 +233,15 @@
 									<div class="task-box col-md-2 pad-0 c_1">
 										<h4><span class="glyphicon glyphicon-plus-sign"></span></h4>
 									</div>
+									<div class="task-box col-md-2 pad-0 c_1">
+										<h4><span class="glyphicon glyphicon-plus-sign"></span></h4>
+									</div>
+									<div class="task-box col-md-2 pad-0 c_1">
+										<h4><span class="glyphicon glyphicon-plus-sign"></span></h4>
+									</div>
+									<div class="task-box col-md-2 pad-0 c_1">
+										<h4><span class="glyphicon glyphicon-plus-sign"></span></h4>
+									</div>
 								</div>
 
 								<div class="time-box col-md-1">
@@ -235,13 +253,111 @@
 										<h4>Task Time </h4>
 										<h4>Task Location</h4>
 									</div>
+									<div class="task-box col-md-2 pad-0">
+										<h4>Task Name</h4>
+										<h4>Task Time </h4>
+										<h4>Task Location</h4>
+									</div>
 									<div class="task-box col-md-2 pad-0 c_1">
 										<h4><span class="glyphicon glyphicon-plus-sign"></span></h4>
+									</div>
+									<div class="task-box col-md-2 pad-0">
+										<h4>Task Name</h4>
+										<h4>Task Time </h4>
+										<h4>Task Location</h4>
+									</div>
+									<div class="task-box col-md-2 pad-0">
+										<h4>Task Name</h4>
+										<h4>Task Time </h4>
+										<h4>Task Location</h4>
 									</div>
 								</div>
 							</div>
 						</div>
 						
+					</div>
+				</div>
+				<div id="tasks-panel" class="col-md-12">
+					<h3 class="c_subtitle">My Tasks</h3>
+					<div>
+						<table class="table table-bordered table-hover c_table">
+							<thead>
+								<tr>
+									<th>Task Name</th>
+									<th>Date</th>
+									<th>Time</th>
+									<th>Location</th>
+									<th>Priority</th>
+									<th>Mandatory</th>
+									<th>Repetitive</th>
+									<th>Options</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Education Technology</td>
+									<td>01/12/2015 - 02/01/2016</td>
+									<td> 9.a.m - 12.p.m</td>
+									<td>Faculty of education building 2</td>
+									<td>Medium</td>
+									<td><span class="glyphicon glyphicon-ok-circle"></span></td>
+									<td><span class="glyphicon glyphicon-ok-circle"></span></td>
+									<td>
+										<button type="button" class="btn btn-info">
+											<span class="glyphicon glyphicon-edit"></span>
+										</button> 
+										<button type="button" class="btn btn-warning">
+											<span class="glyphicon glyphicon-eye-open"></span>
+										</button>
+										<button type="button" class="btn btn-danger">
+											<span class="glyphicon glyphicon-remove-circle"></span>
+										</button>
+									</td>
+								</tr>
+								<tr>
+									<td>Education Technology</td>
+									<td>01/12/2015 - 02/01/2016</td>
+									<td> 9.a.m - 12.p.m</td>
+									<td>Faculty of education building 2</td>
+									<td>Medium</td>
+									<td><span class="glyphicon glyphicon-ok-circle"></span></td>
+									<td><span class="glyphicon glyphicon-ok-circle"></span></td>
+									<td>
+										<button type="button" class="btn btn-info">
+											<span class="glyphicon glyphicon-edit"></span>
+										</button> 
+										<button type="button" class="btn btn-warning">
+											<span class="glyphicon glyphicon-eye-open"></span>
+										</button>
+										<button type="button" class="btn btn-danger">
+											<span class="glyphicon glyphicon-remove-circle"></span>
+										</button>
+									</td>
+								</tr>
+								<tr>
+									<td>Education Technology</td>
+									<td>01/12/2015 - 02/01/2016</td>
+									<td> 9.a.m - 12.p.m</td>
+									<td>Faculty of education building 2</td>
+									<td>Medium</td>
+									<td><span class="glyphicon glyphicon-ok-circle"></span></td>
+									<td><span class="glyphicon glyphicon-ok-circle"></span></td>
+									<td>
+										<button type="button" class="btn btn-info">
+											<span class="glyphicon glyphicon-edit"></span>
+										</button> 
+										<button type="button" class="btn btn-warning">
+											<span class="glyphicon glyphicon-eye-open"></span>
+										</button>
+										<button type="button" class="btn btn-danger">
+											<span class="glyphicon glyphicon-remove-circle"></span>
+										</button>
+									</td>
+								</tr>
+
+
+							</tbody>
+						</table>
 					</div>
 				</div>
 			</div>
