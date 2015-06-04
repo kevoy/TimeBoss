@@ -26,7 +26,7 @@ if(isset($_REQUEST['class'])){
 // return id eg: 12a45
 function getUserId(){
 	//replace with actual
-	return '123';
+	return '1234';
 }
 
 //using the session variable $_SESSION['user_id'] query the database table 'user' for the corresponding email address for the user
