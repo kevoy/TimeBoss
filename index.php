@@ -1,3 +1,7 @@
+<?php
+require_once('task.php');
+require_once('User.php');
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,8 +47,23 @@
 			<div id="download-desc">
 				<h1>Android App</h1>
 				<h3>The Time Boss andoid app allows you to perform all task scheduling from your android device. Get pop-up alerts and reminders about upcoming task, mark tasks as complete and many more.</h3>
-				<button type="button" id="c_download" class="btn btn-primary btn-lg">Download App</button>
+				<button type="button" id="c_download" class="btn btn-primary btn-lg">Learn More</button>
 			</div>
+		</div>
+	</div>
+	<div id="main-traffic" class="row margin-0">
+		<h2>Our Traffic Stats</h2>
+		<div class="col-md-4  c_fill">
+			<h1><?php echo User::getNumUsers(); ?></h1>
+			<h3>Members</h3>
+		</div>
+		<div class="col-md-4  c_fill">
+			<h1><?php echo Task::getNumTasks(); ?></h1>
+			<h3>Tasks Created</h3>
+		</div>
+		<div class="col-md-4  c_fill">
+			<h1>0</h1>
+			<h3>App Downloads</h3>
 		</div>
 	</div>
 </body>

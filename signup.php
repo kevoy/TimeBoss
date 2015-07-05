@@ -6,7 +6,8 @@
 	<script src="stylesheets/bootstrap/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="stylesheets/main.css" type="text/css" >
 	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine:bold,bolditalic|Inconsolata:italic|Droid+Sans|Audiowide|Play">
-
+	<script type="text/javascript" src="scripts/signup.js"></script>
+	<script type="text/javascript" src="scripts/prototype.js"></script>
 </head>
 <body>
 	<?php include 'header-template.php' ?>
@@ -22,7 +23,7 @@
 	<div id="c_main_container" class="row margin-0">
 		<div id='form-box'>
 			<h2>Sign Up</h2>
-			<form action="">
+			<form>
 				<div class="form-group">
 					<label for="email-field">Email</label>
 					<input type="email" id="email-field" class="form-control" placeholder="Enter Your Email Address" >
@@ -35,7 +36,7 @@
 					<label for="c-password-field">Confirm Password</label>
 					<input type="password" id="c-password-field" class="form-control" placeholder="Re-enter Your Password" >
 				</div>
-				<input type="submit" class="btn btn-primary btn-lg" value="Register">
+				<input type="button" class="btn btn-primary btn-lg" id="signup-btn" value="Register">
 			</form>
 		</div>
 	</div>

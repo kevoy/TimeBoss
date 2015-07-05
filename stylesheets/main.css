@@ -54,6 +54,12 @@
 .margin-10{
 	margin-right:10px;
 }
+.margin-5{
+	margin-right:5px;
+}
+.back-error{
+	background-color: red;
+}
 .c_blue{
 	color: #D1D1FF;
 }
@@ -76,10 +82,15 @@
 	color:white;
 }
 #main-steps{
-	height: 400px;
+	min-height: 400px;
 	padding-top: 20px;
 }
-#main-steps .c_fill, #main-download .c_fill{
+#main-traffic{
+	min-height: 200px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+#main-steps .c_fill, #main-download .c_fill, #main-traffic .c_fill{
 	height: 100%;
 	text-align: center;
 }
@@ -100,6 +111,25 @@
 	font-family: "Play", "Helvetica Neue",Helvetica,Arial,sans-serif;
 
 }
+#main-traffic h1{
+	color: #5bc0de;
+	font-family: "Play", "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+#main-traffic h3{
+	font-family: "Play", "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+#main-traffic h2{
+	font-family: "Play", "Helvetica Neue",Helvetica,Arial,sans-serif;
+	text-align: center;
+	margin-bottom: 30px;
+}
+#main-traffic .c_fill{
+	height: auto;
+	background: url('../images/map-shadow.png') no-repeat;
+	background-size: 100% 100%;
+	background-position: 0px 0px;
+}
+
 #main-download{
 	height:550px;
 	background: url("../images/restaurant.png") repeat;
@@ -153,7 +183,7 @@
 	text-align: left;
 }
 #left-bar{
-	min-height: 600px;
+	min-height: 700px;
 	background-color: #F2F2F2;
 	border-right: 1px solid #D0CFCF;
 	padding: 0px 0px 0px 0px;
@@ -194,6 +224,28 @@
 	color:blue;
 
 }
+.dash{
+	height: 50px;
+	background-color: #5bc0de;
+}
+.dash h3{
+	height: 100%;
+	color: white;
+	line-height: 50px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	font-size: 20px;
+	font-family: "Audiowide", "Helvetica Neue",Helvetica,Arial,sans-serif;
+	text-align: center;
+}
+#welcome-user h3{
+	margin-bottom: 0px;
+	margin-top: 10px;
+	font-size: 15px;
+	color: #6B6969;
+	text-align: right;
+	font-family: "Play", "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
 #panel-title{
 	height: 100%;
 	color: #6B6969;
@@ -228,9 +280,13 @@
 	border-bottom: 1px solid #6B6969;
 	padding-bottom: 20px;
 	font-size: 30px;
+	margin-top: 10px;
 }
-#new-task-panel, #tasks-panel{
+#new-task-panel, #new-meeting-panel, #tasks-panel, #meetings-panel{
 	display: none;
+}
+#members-holder{
+	min-height: 30px;
 }
 #days-holder{
 	height: 50px;
@@ -302,4 +358,43 @@
 }
 .c_table{
 	text-align: center;
+}
+#popup-back{
+	display: none;
+	position: fixed;
+	left:0px;
+	top:0px;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+
+}
+#popup-box{
+	display: block;
+	position: fixed;
+	width: 350px;
+	height:auto;
+	left:50%;
+	top:50%;
+	margin-left: -175px;
+	margin-top:-50px;
+	padding: 5px;
+	background: white;
+	border-radius: 10px;
+	border: 5px solid rgba(0, 0, 0, 0.4);
+}
+#popup-title{
+	display: none;
+	font-family: "Audiowide", "Helvetica Neue",Helvetica,Arial,sans-serif;
+	border-bottom: 1px solid black;
+}
+#popup-body{
+	height: 70px;
+}
+#processing-img{
+	display: block;
+	width: 300px;
+	height:67px;
+	background: url('../images/processing.gif') no-repeat;
+	margin:0px auto;
 }

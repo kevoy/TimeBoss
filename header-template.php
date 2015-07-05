@@ -23,10 +23,10 @@ if(strpos($current_url, "index.php") != false){
 		</div>
 		<div id='top-nav-links-holder' class="col-md-6">
 			<a href="index.php" class="<?php if($current_page=="home"){ echo "c_selected";} ?>"><span class="margin-10 glyphicon glyphicon-home"></span>HOME</a>
-			<a href="download.php" class="<?php if($current_page=="download"){ echo "c_selected";} ?>"><span class="margin-10 glyphicon glyphicon-download-alt"></span>DOWNLOAD</a>
-			<?php if(isLoggedIn()): ?>
+			<a href="download.php" class="<?php if($current_page=="download"){ echo "c_selected";} ?>"><span class="margin-10 glyphicon glyphicon-download-alt"></span>APP</a>
+			<?php if(User::isLoggedIn()): ?>
 				<a href="account.php" class="<?php if($current_page=="account"){ echo "c_selected";} ?>"><span class="margin-10 glyphicon glyphicon-cog"></span>MY ACCOUNT</a>
-				<a href="logout.php" class="<?php if($current_page=="logout"){ echo "c_selected";} ?>"><span class="margin-10 glyphicon glyphicon-log-out"></span>LOGOUT</a>
+				<a href="main.php?class=user&method=logout" class="<?php if($current_page=="logout"){ echo "c_selected";} ?>"><span class="margin-10 glyphicon glyphicon-log-out"></span>LOGOUT</a>
 			<?php else: ?>
 				<a href="signup.php" class="<?php if($current_page=="signup"){ echo "c_selected";} ?>"><span class="margin-10 glyphicon glyphicon-user"></span>SIGN UP</a>
 				<a href="login.php" class="<?php if($current_page=="login"){ echo "c_selected";} ?>"><span class="margin-10 glyphicon glyphicon-log-in"></span>LOGIN</a>

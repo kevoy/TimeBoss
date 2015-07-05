@@ -2,7 +2,7 @@
 $dbHost = "localhost";
 $dbName = "TimeBoss";
 $dbUsername="root";
-$dbpassword ="";
+$dbPassword ="";
 
 function query($query){
 	global $dbHost;

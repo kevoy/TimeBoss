@@ -1,11 +1,14 @@
 <?php
 require_once('task.php');
+require_once('meeting.php');
+require_once('User.php');
+User::loginRequired();
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Time Boss</title>
+	<title>My Account - Time Boss</title>
 	<link rel="stylesheet" href="stylesheets/bootstrap/css/bootstrap.min.css" type="text/css" >
 	<script src="stylesheets/bootstrap/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="stylesheets/main.css" type="text/css" >
@@ -13,15 +16,16 @@ require_once('task.php');
 	<script type="text/javascript" src="scripts/account.js"></script>
 	<script type="text/javascript" src="scripts/prototype.js"></script>
 
+
 </head>
 <body>
 	<?php include 'header-template.php' ?>
-
-
 	
 	<div id="profile_main_container" class="row margin-0">
 		<div class='col-md-2' id="left-bar">
-			<div class="col-md-12" id="actions-nav"></div>
+			<div class="col-md-12  dash" id="actions-nav">
+				<h3><span class="margin-10 glyphicon glyphicon-user"></span></h3>
+			</div>
 			<div class="col-md-12 c_tab" id="overview-tab">
 				<h3><span class="margin-10 glyphicon glyphicon-tasks"></span> Overview</h3>
 			</div>
@@ -29,7 +33,7 @@ require_once('task.php');
 				<h3><span class="margin-10 glyphicon glyphicon-th-list"></span> Tasks</h3>
 			</div>
 			<div class="col-md-12 c_tab" id="activities-tab">
-				<h3><span class="margin-10 glyphicon glyphicon-headphones"></span> Activities</h3>
+				<h3><span class="margin-10 glyphicon glyphicon-headphones"></span> Groups</h3>
 			</div>
 			<div class="col-md-12 c_tab" id="meetings-tab">
 				<h3><span class="margin-10 glyphicon glyphicon-comment"></span> Meetings</h3>
@@ -41,13 +45,16 @@ require_once('task.php');
 		<div class='col-md-10' id="right-bar">
 			<div class='col-md-12' id="second-nav">
 				<div class="col-md-6" id="pane-nav-title-holder">
-					<h3 id="panel-title">HOME <span class="glyphicon glyphicon-hand-right margin-10-10"></span> <span id="panel-selected">OVERVIEW</span></h3>
+					<h3 id="panel-title">DASHBOARD <span class="glyphicon glyphicon-hand-right margin-10-10"></span> <span id="panel-selected">OVERVIEW</span></h3>
 				</div>
 				<div class="col-md-6" id="pane-nav-buttons-holder">
 					<button type="button" class="btn btn-primary" id="new-task-btn"><span class="margin-10 glyphicon glyphicon-ok-circle"></span>Add New Task</button>
-					<button type="button" class="btn btn-info"><span class="margin-10 glyphicon glyphicon-ok-sign"></span>Add New Activity</button>
-					<button type="button" class="btn btn-warning"><span class="margin-10 glyphicon glyphicon-check"></span>Add New Meeting</button>
+					<button type="button" class="btn btn-info"><span class="margin-10 glyphicon glyphicon-ok-sign"></span>Create New Group</button>
+					<button type="button" class="btn btn-warning"  id="new-meeting-btn"><span class="margin-10 glyphicon glyphicon-check"></span>Add New Meeting</button>
 				</div>
+			</div>
+			<div id="welcome-user" class="col-md-offset-8 col-md-4">
+				<h3><span class="margin-10 glyphicon glyphicon-user"></span>Welcome <b><?php echo User::getMyEmail(); ?></b></h3>
 			</div>
 			<div id="main-panel" class="col-md-12">
 				<div id="new-task-panel" class="col-md-12">
@@ -69,13 +76,13 @@ require_once('task.php');
 							<div class="form-group">
 								<label for="t-s-date-field" class="col-sm-2">Start Date</label>
 								<div class="col-sm-7">
-									<input type="date" id="t-s-date-field" class="form-control" placeholder="Enter Task Start Date eg: mm/dd/yyyy" >
+									<input type="date" id="t-s-date-field" class="form-control" placeholder="Enter Task Start Date eg: yyyy/mm/dd" >
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="t-e-date-field" class="col-sm-2">End Date</label>
 								<div class="col-sm-7">
-									<input type="date" id="t-e-date-field" class="form-control" placeholder="Enter Task End Date eg: mm/dd/yyyy" >
+									<input type="date" id="t-e-date-field" class="form-control" placeholder="Enter Task End Date eg: yyyy/mm/dd" >
 								</div>
 							</div>
 							<div class="form-group">
@@ -153,6 +160,88 @@ require_once('task.php');
 								</div>
 							</div>
 							<input type="button" class="btn btn-primary btn-lg  col-sm-offset-2" id= "add-task-btn" value="Add Task">
+						</form>
+					</div>
+				</div>
+				<div id="new-meeting-panel" class="col-md-12">
+					<h3 class="c_subtitle">Add New Meeting</h3>
+					<div>
+						<form action="" class="form-horizontal">
+							<div class="form-group">
+								<label for="t-m_name-field" class="col-sm-2">Meeting Name</label>
+								<div class="col-sm-7">
+									<input type="text" id="t-m_name-field" class="form-control" placeholder="Enter Task Name" >
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="t-m_location-field" class="col-sm-2">Meeting Location</label>
+								<div class="col-sm-7">
+									<input type="text" id="t-m_location-field" class="form-control" placeholder="Enter Location" >
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="t-m_date-field" class="col-sm-2">Date</label>
+								<div class="col-sm-7">
+									<input type="date" id="t-m_date-field" class="form-control" placeholder="Enter Task Start Date eg: yyyy/mm/dd" >
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="m_members-field" class="col-sm-2">Invite Members</label>
+								<div class="col-sm-7">
+									<input type="text" id="m_members-field" class="form-control" placeholder="Enter Username(s) of members to invite ">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2">Current Members</label>
+								<div class=" col-sm-7" id="members-holder">
+									<h5>You have not yet invited any members</h5>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="s-m_time-field" class="col-sm-2">Start Time</label>
+								<div class="col-sm-7">
+									<input type="time" id="s-m_time-field" class="form-control" placeholder="Enter Start Time eg: hh:mm" >
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="e-m_time-field" class="col-sm-2">End Time</label>
+								<div class="col-sm-7">
+									<input type="time" id="e-m_time-field" class="form-control" placeholder="Enter End Time eg: hh:mm" >
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2">Is this a repetitive meeting?</label>
+								<div class="col-sm-7">
+									<div class="radio">
+										<label>
+											<input type="radio" id="m_repetitive-true-field" name="repetitive" placeholder="Enter Location">Yes
+										</label>
+										<label>
+											<input type="radio" id="m_repetitive-false-field" name="repetitive" placeholder="Enter Location" checked>No
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="m_desc-field" class="col-sm-2">Description</label>
+								<div class="col-sm-7">
+									<input type="text" id="m_desc-field" class="form-control" placeholder="Enter Description" >
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2">Access</label>
+								<div class="col-sm-7">
+									<div class="radio">
+										<label>
+											<input type="radio" id="m_access-priv-field" name="access" placeholder="Enter Location" checked>Private
+										</label>
+										<label>
+											<input type="radio" id="m_access-pub-field" name="access" placeholder="Enter Location" checked>Public
+										</label>
+									</div>
+								</div>
+							</div>
+							<input type="button" class="btn btn-primary btn-lg  col-sm-offset-2" id= "add-meeting-btn" value="Add Meeting">
 						</form>
 					</div>
 				</div>
@@ -283,66 +372,28 @@ require_once('task.php');
 						
 					</div>
 				</div>
+				<div id="meetings-panel" class="col-md-12">
+					<h3 class="c_subtitle">My Meetings</h3>
+					<div id="meetings-holder">
+						<?php include 'meetings-template.php'; ?>
+					</div>
+				</div>
 				<div id="tasks-panel" class="col-md-12">
 					<h3 class="c_subtitle">My Tasks</h3>
-					<div>
-						<table class="table table-bordered table-hover c_table">
-							<thead>
-								<tr>
-									<th>Task Name</th>
-									<th>Date</th>
-									<th>Time</th>
-									<th>Location</th>
-									<th>Priority</th>
-									<th>Mandatory</th>
-									<th>Repetitive</th>
-									<th>Options</th>
-								</tr>
-							</thead>
-							<tbody>
-								<?php 
-								$task_ids = getMyTaskIds();
-								foreach($task_ids as $task):
-								?>
-								<tr>
-									<td><?php echo getTaskName($task); ?></td>
-									<td><?php echo getTaskStartDate($task); ?><br><?php echo getTaskEndDate($task); ?></td>
-									<td><?php echo getTaskStartTime($task); ?><br><?php echo getTaskEndTime($task); ?></td>
-									<td><?php echo getTaskLocation($task); ?></td>
-									<td><?php echo getTaskPriority($task); ?></td>
-									<?php if(isTaskMandatory($task)): ?>
-										<td><span class="glyphicon glyphicon-ok-circle"></span></td>
-									<?php else: ?>
-										<td><span class="glyphicon glyphicon-minus-sign"></span></td>
-									<?php endif; ?>
-									<?php if(isTaskRepetitive($task)): ?>
-										<td><span class="glyphicon glyphicon-ok-circle"></span></td>
-									<?php else: ?>
-										<td><span class="glyphicon glyphicon-minus-sign"></span></td>
-									<?php endif; ?>
-									<td>
-										<button type="button" class="btn btn-info">
-											<span class="glyphicon glyphicon-edit"></span>
-										</button> 
-										<button type="button" class="btn btn-warning">
-											<span class="glyphicon glyphicon-eye-open"></span>
-										</button>
-										<button type="button" class="btn btn-danger">
-											<span class="glyphicon glyphicon-remove-circle"></span>
-										</button>
-									</td>
-								</tr>
-								<?php
-								endforeach;
-								?>
-		
-							</tbody>
-						</table>
-					</div>
+					<div id = "tasks-holder">
+						<?php include 'tasks-template.php'; ?>
 				</div>
 			</div>
 		</div>
 
+	</div>
+	<div id="popup-back">
+		<div id="popup-box">
+			<h4 id="popup-title">Processing Information</h4>
+			<div id="popup-body">
+				<div id="processing-img"></div>
+			</div>
+		</div>
 	</div>
 </body>
 
