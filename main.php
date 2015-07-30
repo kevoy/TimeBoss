@@ -2,6 +2,7 @@
 require_once('User.php');
 require_once('task.php');
 require_once('meeting.php');
+require_once('access_group.php');
 if(isset($_REQUEST['class'])){
 
 	if($_REQUEST['class']=="task"){
@@ -15,8 +16,20 @@ if(isset($_REQUEST['class'])){
 	if($_REQUEST['class']=="meeting"){
 		processMeetingRequests();
 	}
-}
 
+	if($_REQUEST['class']=="group"){
+		processGroupRequests();
+	}
+}
+function processGroupRequests(){
+	if($_REQUEST['method']=="add_group"){
+		$name = $_REQUEST['name'];
+		$users = $_REQUEST['users'];
+		$access = $_REQUEST['access'];
+		$tasks = $_REQUEST['tasks'];
+		echo AccessGroup::addGroup($name, $access, $users, $tasks);
+	}
+}
 function processMeetingRequests(){
 	if($_REQUEST['method']=="add_meeting"){
 		$name = $_REQUEST['name'];

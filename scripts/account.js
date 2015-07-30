@@ -1,4 +1,6 @@
 var meetingMembers = null;
+var state = null;
+var group_tasks = [];
 window.onload = function(){
 	image = new Image(300, 67);
 	image.src = "images/processing.gif";
@@ -11,11 +13,17 @@ window.onload = function(){
 	var meetingsTab = document.getElementById("meetings-tab");
 	meetingsTab.onclick = showMeetingsPanel;
 
+	var groupsTab = document.getElementById("groups-tab");
+	groupsTab.onclick = showGroupsPanel;
+
 	var newTaskBtn = document.getElementById("new-task-btn");
 	newTaskBtn.onclick = showAddTaskPanel;
 
 	var newMeetingBtn = document.getElementById("new-meeting-btn");
 	newMeetingBtn.onclick = showAddMeetingPanel;
+
+	var newGroupBtn = document.getElementById("new-group-btn");
+	newGroupBtn.onclick = showAddGroupPanel;
 
 	var addTaskBtn = document.getElementById("add-task-btn");
 	addTaskBtn.onclick = addNewTask;
@@ -23,15 +31,45 @@ window.onload = function(){
 	var addMeetingBtn = document.getElementById("add-meeting-btn");
 	addMeetingBtn.onclick = addNewMeeting;
 
+	var addGroupBtn = document.getElementById("add-group-btn");
+	addGroupBtn.onclick = addNewGroup;
+	
 	var membersBtn = document.getElementById("m_members-field");
 	membersBtn.onkeyup = verifyMember;
+
+	var groupMembersBtn = document.getElementById("g_members-field");
+	groupMembersBtn.onkeyup = verifyMember;
+}
+function groupAddTask(el){
+	
+	var task_id = el.value;
+	var txt = el.options[el.selectedIndex].text;
+	if(group_tasks.indexOf(task_id)>=0){
+		return 0;
+	}
+	group_tasks.push(task_id);
+	var taskBadge = createTaskBadge(txt, task_id);
+	var taskDiv = document.getElementById("g-tasks-holder");
+	if(group_tasks.length==1){
+		taskDiv.innerHTML = taskBadge;
+	}else{
+		taskDiv.innerHTML+= taskBadge;
+	}
+	
 }
 function verifyMember(evt){
 	var keyVal = evt.keyCode || evt.which;
 	//alert(keyVal);
 	if(keyVal == 188 || keyVal== 13){
-		var membersField = document.getElementById("m_members-field");
-		var membersDiv = document.getElementById("members-holder");
+		var membersField, membersDiv;
+		if(state=="meeting"){
+			membersField = document.getElementById("m_members-field");
+			membersDiv = document.getElementById("members-holder");
+		}else{
+			membersField = document.getElementById("g_members-field");
+			membersDiv = document.getElementById("g-members-holder");
+		}
+		
 		var fieldVal = membersField.value;
 		var username;
 		if(fieldVal.indexOf(',')==-1){
@@ -53,20 +91,47 @@ function verifyMember(evt){
 		}
 		meetingMembers.push(username);
 		membersDiv.innerHTML+= userBadge;
-		validateUserName(username, 'bg-'+username);
+		if(state=="meeting"){
+			validateUserName(username, 'bg-'+username);
+		}else{
+			validateUserName(username, 'bg2-'+username);
+		}
+		
 	}
 	
 
 }
 function createBadge(txt){
-	return "<button id='bg-"+txt+"' type='button' class='margin-5 btn btn-default'> " + txt +" <span class='badge' onclick='removeMember(this,\""+txt+"\")'>X</span></button>";
+	if(state=="meeting"){
+		return "<button id='bg-"+txt+"' type='button' class='margin-5 btn btn-default'> " + txt +" <span class='badge' onclick='removeMember(this,\""+txt+"\")'>X</span></button>";
+	}
+	return "<button id='bg2-"+txt+"' type='button' class='margin-5 btn btn-default'> " + txt +" <span class='badge' onclick='removeMember(this,\""+txt+"\")'>X</span></button>";
 }
 function removeMember(el, txt){
 	meetingMembers.splice(meetingMembers.indexOf(txt), 1);
-	var membersDiv = document.getElementById("members-holder");
+	var membersDiv;
+	if(state=="meeting"){
+		membersDiv = document.getElementById("members-holder");
+	}else{
+		membersDiv = document.getElementById("g-members-holder");
+	}
+	
 	membersDiv.removeChild(el.parentNode);
 	if(meetingMembers.length<=0){
 		membersDiv.innerHTML = "<h5>You have not yet invited any members</h5>";
+	}
+}
+function createTaskBadge(txt, task_id){
+	
+	return "<button id='tsk-"+txt+"' type='button' class='margin-5 btn btn-default'> " + txt +" <span class='badge' onclick='removeGroupTask(this,\""+task_id+"\")'>X</span></button>";
+}
+function removeGroupTask(el, task_id){
+	group_tasks.splice(group_tasks.indexOf(task_id), 1);
+	var tasksDiv = document.getElementById("g-tasks-holder");
+	
+	tasksDiv.removeChild(el.parentNode);
+	if(group_tasks.length<=0){
+		tasksDiv.innerHTML = "<h5>You have not yet added any tasks</h5>";
 	}
 }
 function validateUserName(name, el){
@@ -179,6 +244,46 @@ function sendNewMeeting(data){
 		reloadMeetings();
 	}
 }
+function addNewGroup(){
+	var name = document.getElementById("g-name-field").value;
+	var access = document.getElementById("all-field").checked;
+	if(access){
+		access = "all";
+	}else{
+		access = "selective";
+	}
+
+	var users = {};
+	for(i=0; i<meetingMembers.length; i++){
+		users['user'+i] = meetingMembers[i]; 
+	}
+	users = JSON.stringify(users);
+
+	var tasks = {};
+	for(i=0; i<group_tasks.length; i++){
+		tasks['task'+i] = group_tasks[i]; 
+	}
+	tasks = JSON.stringify(tasks);
+	showPopup();
+	new Ajax.Request("main.php",
+		{
+			parameters: {
+				'class':'group',
+				'method':'add_group',
+				name: name,
+				access: access,
+				users: users,
+				tasks: tasks
+			},
+			method: 'post',
+			onSuccess: sendNewGroup
+		});
+}
+
+function sendNewGroup(data){
+	hidePopup();
+	alert(data.responseText);
+}
 function reloadTasks(){
 	var tasks_holder = document.getElementById('tasks-holder');
 	new Ajax.Request("tasks-template.php",
@@ -240,18 +345,28 @@ function showTasksPanel(){
 function showMeetingsPanel(){
 	loadPanel("meetings-panel", "MEETINGS");
 }
+function showGroupsPanel(){
+	loadPanel("groups-panel", "GROUPS");
+}
 function showAddTaskPanel(){
 	loadPanel("new-task-panel", "NEW TASK");
 }
 function showAddMeetingPanel(){
+	state = "meeting";
 	loadPanel("new-meeting-panel", "NEW MEETING");
+}
+function showAddGroupPanel(){
+	state = "group";
+	loadPanel("new-group-panel", "NEW GROUP");
 }
 function loadPanel(id, title){
 	document.getElementById("new-task-panel").style.display = "none";
 	document.getElementById("new-meeting-panel").style.display = "none";
+	document.getElementById("new-group-panel").style.display = "none";
 	document.getElementById("overview-panel").style.display = "none";
 	document.getElementById("tasks-panel").style.display = "none";
 	document.getElementById("meetings-panel").style.display = "none";
+	document.getElementById("groups-panel").style.display = "none";
 
 	document.getElementById(id).style.display = "block";
 	document.getElementById("panel-selected").innerHTML = title;

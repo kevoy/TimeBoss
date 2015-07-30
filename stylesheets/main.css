@@ -282,7 +282,7 @@
 	font-size: 30px;
 	margin-top: 10px;
 }
-#new-task-panel, #new-meeting-panel, #tasks-panel, #meetings-panel{
+#new-task-panel, #new-meeting-panel, #tasks-panel, #meetings-panel, #groups-panel, #new-group-panel{
 	display: none;
 }
 #members-holder{
@@ -397,4 +397,20 @@
 	height:67px;
 	background: url('../images/processing.gif') no-repeat;
 	margin:0px auto;
+}
+span[cust-title]:hover:after{
+	content: attr(cust-title);
+	padding: 5px 15px 5px 15px;
+	background-color:#5bc0de; 
+	border:1px solid #46b8da;
+	color:white;
+	position:absolute;
+	top:100%;
+	left:100%px;
+	z-index: 100;
+	border-radius: 3px;
+	font-family: "Audiowide", "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+.group-ico{
+	cursor: pointer;
 }

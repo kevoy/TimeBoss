@@ -95,7 +95,7 @@ class Task{
 		$task_id = Task::getRandNum();
 		$task_app_id = Task::getRandNum();
 		$user_id = User::getUserId();
-		$schedule_id = getScheduleId();
+		$schedule_id = Schedule::getScheduleId();
 		$result = queryDB("INSERT INTO task VALUES ('$task_id', '$task_app_id', '$name', '$location', '$start', '$end', '$repeat', '$mandatory','$sTime','$eTime', '$priority', '$description', '$access');");
 		$result2 = queryDB("INSERT INTO adds VALUES ('$user_id', '$task_id')");
 		$result3 = queryDB("INSERT INTO contains VALUES ('$schedule_id', '$task_id')");

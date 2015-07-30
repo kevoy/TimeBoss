@@ -23,7 +23,7 @@ class User{
 	//return email eg:at@yahoo.com
 	public function getUserEmail(){
 		//follow this example, add session variable to the sql select statement using a where clause
-		$result = queryDB("Select * from user limit 1");
+		$result = queryDB("Select email from user where user_id = '$this->user_id';");
 		$row = mysql_fetch_array($result);
 		return $row['email'];
 	}

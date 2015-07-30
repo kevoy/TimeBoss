@@ -32,7 +32,7 @@ User::loginRequired();
 			<div class="col-md-12 c_tab" id="tasks-tab">
 				<h3><span class="margin-10 glyphicon glyphicon-th-list"></span> Tasks</h3>
 			</div>
-			<div class="col-md-12 c_tab" id="activities-tab">
+			<div class="col-md-12 c_tab" id="groups-tab">
 				<h3><span class="margin-10 glyphicon glyphicon-headphones"></span> Groups</h3>
 			</div>
 			<div class="col-md-12 c_tab" id="meetings-tab">
@@ -49,7 +49,7 @@ User::loginRequired();
 				</div>
 				<div class="col-md-6" id="pane-nav-buttons-holder">
 					<button type="button" class="btn btn-primary" id="new-task-btn"><span class="margin-10 glyphicon glyphicon-ok-circle"></span>Add New Task</button>
-					<button type="button" class="btn btn-info"><span class="margin-10 glyphicon glyphicon-ok-sign"></span>Create New Group</button>
+					<button type="button" class="btn btn-info" id="new-group-btn"><span class="margin-10 glyphicon glyphicon-ok-sign"></span>Create New Group</button>
 					<button type="button" class="btn btn-warning"  id="new-meeting-btn"><span class="margin-10 glyphicon glyphicon-check"></span>Add New Meeting</button>
 				</div>
 			</div>
@@ -245,130 +245,66 @@ User::loginRequired();
 						</form>
 					</div>
 				</div>
+				<div id="new-group-panel" class="col-md-12">
+					<h3 class="c_subtitle">Create New Group</h3>
+					<div>
+						<form action="" class="form-horizontal">
+							<div class="form-group">
+								<label for="g-name-field" class="col-sm-2">Group Name</label>
+								<div class="col-sm-7">
+									<input type="text" id="g-name-field" class="form-control" placeholder="Enter Group Name" >
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="g_members-field" class="col-sm-2">Members</label>
+								<div class="col-sm-7">
+									<input type="text" id="g_members-field" class="form-control" placeholder="Enter Username(s) of members to add ">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2">Current Members</label>
+								<div class=" col-sm-7" id="g-members-holder">
+									<h5>You have not yet invited any members</h5>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2">Access Type</label>
+								<div class="col-sm-7">
+									<div class="radio">
+										<label>
+											<input type="radio" id="all-field" name="g-access">All
+										</label>
+										<label>
+											<input type="radio" id="selective-field" name="g-access" checked>Selective
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="g-tasks-field" class="col-sm-2">Select Tasks</label>
+								<div class="col-sm-7">
+									<select id="g-tasks-field" class="form-control" placeholder="Select Tasks" onchange="groupAddTask(this)" >
+										<option disabled selected>-- Select A Task --</option>
+										<?php foreach (Task::getMyTasks() as $task): ?>
+										<option value="<?php echo $task->getTaskId(); ?>" ><?php echo $task->getTaskName(); ?></option>
+										<?php endforeach; ?>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2">Tasks Added</label>
+								<div class=" col-sm-7" id="g-tasks-holder">
+									<h5>You have not yet added any tasks</h5>
+								</div>
+							</div>
+							<input type="button" class="btn btn-primary btn-lg  col-sm-offset-2" id= "add-group-btn" value="Add Group">
+						</form>
+					</div>
+				</div>
 				<div id="overview-panel" class="col-md-12">
 					<h3 class="c_subtitle">My Calendar</h3>
 					<div>
-						<div id="cal-holder">
-							<div class="col-md-offset-1 col-md-11 pad-0" id="days-holder">
-								<div class="col-md-2 day-box">
-									<h4>Mon</h4>
-								</div>
-								<div class="col-md-2 day-box">
-									<h4>Tue</h4>
-								</div>
-								<div class="col-md-2 day-box">
-									<h4>Wed</h4>
-								</div>
-								<div class="col-md-2 day-box">
-									<h4>Thur</h4>
-								</div>
-								<div class="col-md-2 day-box">
-									<h4>Fri</h4>
-								</div>
-								
-							</div>
-							<div id="cal-holder-body" class="col-md-12 pad-0">
-								<div class="time-box col-md-1">
-									<h4>8 A.M</h4>
-								</div>
-								<div class="col-md-11 pad-0 tasks-cal">
-									<div class="task-box col-md-2 pad-0">
-										<h4>Task Name</h4>
-										<h4>Task Time </h4>
-										<h4>Task Location</h4>
-									</div>
-									<div class="task-box col-md-2 pad-0 c_1">
-										<h4><span class="glyphicon glyphicon-plus-sign"></span></h4>
-									</div>
-									<div class="task-box col-md-2 pad-0 c_1">
-										<h4><span class="glyphicon glyphicon-plus-sign"></span></h4>
-									</div>
-									<div class="task-box col-md-2 pad-0 c_1">
-										<h4><span class="glyphicon glyphicon-plus-sign"></span></h4>
-									</div>
-									<div class="task-box col-md-2 pad-0 c_1">
-										<h4><span class="glyphicon glyphicon-plus-sign"></span></h4>
-									</div>
-								</div>
-
-								<div class="time-box col-md-1">
-									<h4>8 A.M</h4>
-								</div>
-								<div class="col-md-11 pad-0 tasks-cal">
-									<div class="task-box col-md-2 pad-0">
-										<h4>Task Name</h4>
-										<h4>Task Time </h4>
-										<h4>Task Location</h4>
-									</div>
-									<div class="task-box col-md-2 pad-0 c_1">
-										<h4><span class="glyphicon glyphicon-plus-sign"></span></h4>
-									</div>
-									<div class="task-box col-md-2 pad-0 c_1">
-										<h4><span class="glyphicon glyphicon-plus-sign"></span></h4>
-									</div>
-									<div class="task-box col-md-2 pad-0 c_1">
-										<h4><span class="glyphicon glyphicon-plus-sign"></span></h4>
-									</div>
-									<div class="task-box col-md-2 pad-0">
-										<h4>Task Name</h4>
-										<h4>Task Time </h4>
-										<h4>Task Location</h4>
-									</div>
-								</div>
-
-								<div class="time-box col-md-1">
-									<h4>8 A.M</h4>
-								</div>
-								<div class="col-md-11 pad-0 tasks-cal">
-									<div class="task-box col-md-2 pad-0">
-										<h4>Task Name</h4>
-										<h4>Task Time </h4>
-										<h4>Task Location</h4>
-									</div>
-									<div class="task-box col-md-2 pad-0 c_1">
-										<h4><span class="glyphicon glyphicon-plus-sign"></span></h4>
-									</div>
-									<div class="task-box col-md-2 pad-0 c_1">
-										<h4><span class="glyphicon glyphicon-plus-sign"></span></h4>
-									</div>
-									<div class="task-box col-md-2 pad-0 c_1">
-										<h4><span class="glyphicon glyphicon-plus-sign"></span></h4>
-									</div>
-									<div class="task-box col-md-2 pad-0 c_1">
-										<h4><span class="glyphicon glyphicon-plus-sign"></span></h4>
-									</div>
-								</div>
-
-								<div class="time-box col-md-1">
-									<h4>8 A.M</h4>
-								</div>
-								<div class="col-md-11 pad-0 tasks-cal">
-									<div class="task-box col-md-2 pad-0">
-										<h4>Task Name</h4>
-										<h4>Task Time </h4>
-										<h4>Task Location</h4>
-									</div>
-									<div class="task-box col-md-2 pad-0">
-										<h4>Task Name</h4>
-										<h4>Task Time </h4>
-										<h4>Task Location</h4>
-									</div>
-									<div class="task-box col-md-2 pad-0 c_1">
-										<h4><span class="glyphicon glyphicon-plus-sign"></span></h4>
-									</div>
-									<div class="task-box col-md-2 pad-0">
-										<h4>Task Name</h4>
-										<h4>Task Time </h4>
-										<h4>Task Location</h4>
-									</div>
-									<div class="task-box col-md-2 pad-0">
-										<h4>Task Name</h4>
-										<h4>Task Time </h4>
-										<h4>Task Location</h4>
-									</div>
-								</div>
-							</div>
-						</div>
+						<?php include 'calendar-template.php'; ?>
 						
 					</div>
 				</div>
@@ -382,8 +318,20 @@ User::loginRequired();
 					<h3 class="c_subtitle">My Tasks</h3>
 					<div id = "tasks-holder">
 						<?php include 'tasks-template.php'; ?>
+					</div>
 				</div>
-			</div>
+				<div id="groups-panel" class="col-md-12">
+					<h3 class="c_subtitle">Groups</h3>
+					<div>
+						<?php include 'groups-template.php'; ?>
+						
+					</div>
+					<h3 class="c_subtitle">My Groups</h3>
+					<div>
+						<?php include 'my-groups-template.php'; ?>
+						
+					</div>
+				</div>
 		</div>
 
 	</div>
